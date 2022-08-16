@@ -8,10 +8,10 @@ namespace Demo.Models
     {
         public int Id { get; set; }
 
-        public int MobileId { get; set; }  //FK : liên kết sang PK của bảng Mobile
+        public int BookId { get; set; }  //FK : liên kết sang PK bảng Book 
 
         //Order - Mobile: Many To One
-        public Book Book { get; set; }  //dùng để truy xuất các thông tin của bảng Mobile
+        public Book Book { get; set; }  //truy xuất các thông tin của bảng Book 
 
         public string UserEmail { get; set; }
 
