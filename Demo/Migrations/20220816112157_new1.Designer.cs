@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Demo.Data.Migrations
+namespace Demo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220816015836_new123")]
-    partial class new123
+    [Migration("20220816112157_new1")]
+    partial class new1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,14 +45,12 @@ namespace Demo.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookId");
-
                     b.ToTable("Author");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            Id = 12,
                             Age = 40,
                             BookId = 0,
                             Email = "Long@gmail.com",
@@ -60,7 +58,7 @@ namespace Demo.Data.Migrations
                         },
                         new
                         {
-                            Id = 2,
+                            Id = 13,
                             Age = 70,
                             BookId = 0,
                             Email = "Minh@gmail.com",
@@ -68,7 +66,7 @@ namespace Demo.Data.Migrations
                         },
                         new
                         {
-                            Id = 3,
+                            Id = 14,
                             Age = 50,
                             BookId = 0,
                             Email = "Khanh@gmail.com",
@@ -76,7 +74,7 @@ namespace Demo.Data.Migrations
                         },
                         new
                         {
-                            Id = 4,
+                            Id = 15,
                             Age = 30,
                             BookId = 0,
                             Email = "Ha@gmail.com",
@@ -84,7 +82,7 @@ namespace Demo.Data.Migrations
                         },
                         new
                         {
-                            Id = 5,
+                            Id = 16,
                             Age = 40,
                             BookId = 0,
                             Email = "Hanh@gmail.com",
@@ -98,6 +96,15 @@ namespace Demo.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AuthorId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -118,12 +125,19 @@ namespace Demo.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuthorId1");
+
+                    b.HasIndex("CategoryId")
+                        .IsUnique();
+
                     b.ToTable("Book");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            AuthorId = 1,
+                            CategoryId = 1,
                             Description = "None",
                             Name = "Hamlet ",
                             Price = 100.0,
@@ -133,6 +147,8 @@ namespace Demo.Data.Migrations
                         new
                         {
                             Id = 2,
+                            AuthorId = 2,
+                            CategoryId = 2,
                             Description = "None",
                             Name = "The Great Gatsby",
                             Price = 200.0,
@@ -142,6 +158,8 @@ namespace Demo.Data.Migrations
                         new
                         {
                             Id = 3,
+                            AuthorId = 3,
+                            CategoryId = 3,
                             Description = "None",
                             Name = "One Hundred Years of Solitude",
                             Price = 400.0,
@@ -151,6 +169,8 @@ namespace Demo.Data.Migrations
                         new
                         {
                             Id = 4,
+                            AuthorId = 4,
+                            CategoryId = 4,
                             Description = "None",
                             Name = "Don Quixote",
                             Price = 700.0,
@@ -160,6 +180,8 @@ namespace Demo.Data.Migrations
                         new
                         {
                             Id = 5,
+                            AuthorId = 5,
+                            CategoryId = 5,
                             Description = "None",
                             Name = "Moby Dick ",
                             Price = 200.0,
@@ -175,9 +197,6 @@ namespace Demo.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -188,44 +207,36 @@ namespace Demo.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookId")
-                        .IsUnique();
-
                     b.ToTable("Category");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            BookId = 0,
                             Description = " Novel Type",
                             Name = " Novel"
                         },
                         new
                         {
                             Id = 2,
-                            BookId = 0,
                             Description = " Fantasy Type",
                             Name = " Fantasy"
                         },
                         new
                         {
                             Id = 3,
-                            BookId = 0,
                             Description = " Romance Type",
                             Name = " Romance"
                         },
                         new
                         {
                             Id = 4,
-                            BookId = 0,
                             Description = " Horror Type",
                             Name = " Horror"
                         },
                         new
                         {
                             Id = 5,
-                            BookId = 0,
                             Description = " Comedy Type",
                             Name = " Comedy"
                         });
@@ -460,20 +471,15 @@ namespace Demo.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Demo.Models.Author", b =>
+            modelBuilder.Entity("Demo.Models.Book", b =>
                 {
-                    b.HasOne("Demo.Models.Book", "Book")
-                        .WithMany("Authors")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                    b.HasOne("Demo.Models.Author", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId1");
 
-            modelBuilder.Entity("Demo.Models.Category", b =>
-                {
-                    b.HasOne("Demo.Models.Book", "Book")
-                        .WithOne("Category")
-                        .HasForeignKey("Demo.Models.Category", "BookId")
+                    b.HasOne("Demo.Models.Category", "Category")
+                        .WithOne("Book")
+                        .HasForeignKey("Demo.Models.Book", "CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

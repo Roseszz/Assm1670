@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
@@ -22,8 +23,5 @@ namespace Demo.Models
         [Required]
         [Display(Name = "Author Name")]
         public int BookId { get; set; }
-
-        //Author  - Book : 1 to Many
-        public Book Book  { get; set; }
     }
 }

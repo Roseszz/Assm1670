@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 
 namespace Demo.Models
 {
@@ -12,10 +14,10 @@ namespace Demo.Models
 
         public string Description { get; set; }
 
-        // category-book one to one
-        [Required]
-        [Display(Name = "Category Name")]
-        public int BookId { get; set; }
+        // category-book many to one
+
         public Book Book { get; set; }
+
+
     }
 }

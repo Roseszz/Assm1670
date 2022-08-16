@@ -28,12 +28,26 @@ namespace Demo.Models
         public string Description { get; set; }
 
         //Book  - author: many to one
-        public ICollection<Author> Authors { get; set; }
+        //public ICollection<Author> Authors { get; set; }
 
         //Book  - Order: 1 to Many
         public ICollection<Order> Orders { get; set; }
+
+        //Book  - Category: 1 to many
         
-        //Book  - Category: 1 to 1
+
+        public int CategoryId { get; set; }
+
+        //thuộc tính liên kết (dùng truy xuất trong code)
         public Category Category { get; set; }
+
+
+        public Author Author { get; set; }
+
+        [Required]
+        [Display(Name = "Author name")]
+        public int AuthorId { get; set; }
+
+
     }
 }

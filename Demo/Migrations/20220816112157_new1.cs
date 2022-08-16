@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
-namespace Demo.Data.Migrations
+namespace Demo.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class new1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,11 +47,41 @@ namespace Demo.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Author",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 30, nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Age = table.Column<int>(nullable: false),
+                    BookId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Author", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Category",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 20, nullable: false),
+                    Description = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Category", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -73,7 +102,7 @@ namespace Demo.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -153,6 +182,97 @@ namespace Demo.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Book",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(maxLength: 30, nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
+                    TimePublish = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: false),
+                    AuthorId1 = table.Column<int>(nullable: true),
+                    AuthorId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Book", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Book_Author_AuthorId1",
+                        column: x => x.AuthorId1,
+                        principalTable: "Author",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Book_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookId = table.Column<int>(nullable: false),
+                    UserEmail = table.Column<string>(nullable: true),
+                    OrderQuantity = table.Column<int>(nullable: false),
+                    OrderPrice = table.Column<double>(nullable: false),
+                    OrderDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Order_Book_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Book",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Author",
+                columns: new[] { "Id", "Age", "BookId", "Email", "Name" },
+                values: new object[,]
+                {
+                    { 12, 40, 0, "Long@gmail.com", "Long" },
+                    { 13, 70, 0, "Minh@gmail.com", "Minh" },
+                    { 14, 50, 0, "Khanh@gmail.com", "Khanh" },
+                    { 15, 30, 0, "Ha@gmail.com", "Ha" },
+                    { 16, 40, 0, "Hanh@gmail.com", "Hanh" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Category",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1, " Novel Type", " Novel" },
+                    { 2, " Fantasy Type", " Fantasy" },
+                    { 3, " Romance Type", " Romance" },
+                    { 4, " Horror Type", " Horror" },
+                    { 5, " Comedy Type", " Comedy" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Book",
+                columns: new[] { "Id", "AuthorId", "AuthorId1", "CategoryId", "Description", "Name", "Price", "Quantity", "TimePublish" },
+                values: new object[,]
+                {
+                    { 1, 1, null, 1, "None", "Hamlet ", 100.0, 10, new DateTime(1996, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 2, null, 2, "None", "The Great Gatsby", 200.0, 10, new DateTime(2000, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 3, null, 3, "None", "One Hundred Years of Solitude", 400.0, 10, new DateTime(2009, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 4, null, 4, "None", "Don Quixote", 700.0, 10, new DateTime(2012, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, 5, null, 5, "None", "Moby Dick ", 200.0, 10, new DateTime(2005, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +311,22 @@ namespace Demo.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Book_AuthorId1",
+                table: "Book",
+                column: "AuthorId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Book_CategoryId",
+                table: "Book",
+                column: "CategoryId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Order_BookId",
+                table: "Order",
+                column: "BookId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +347,22 @@ namespace Demo.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Order");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Book");
+
+            migrationBuilder.DropTable(
+                name: "Author");
+
+            migrationBuilder.DropTable(
+                name: "Category");
         }
     }
 }
