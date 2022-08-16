@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\source\\repos\\Demo\\Demo\\Demo.csproj": {}
+    "C:\\Users\\fever\\Desktop\\Unishit\\11st\\1670 Application Development\\Assm1670\\Demo\\Demo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\source\\repos\\Demo\\Demo\\Demo.csproj": {
+    "C:\\Users\\fever\\Desktop\\Unishit\\11st\\1670 Application Development\\Assm1670\\Demo\\Demo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\Demo\\Demo\\Demo.csproj",
+        "projectUniqueName": "C:\\Users\\fever\\Desktop\\Unishit\\11st\\1670 Application Development\\Assm1670\\Demo\\Demo.csproj",
         "projectName": "Demo",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\Demo\\Demo\\Demo.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\Demo\\Demo\\obj\\",
+        "projectPath": "C:\\Users\\fever\\Desktop\\Unishit\\11st\\1670 Application Development\\Assm1670\\Demo\\Demo.csproj",
+        "packagesPath": "C:\\Users\\fever\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fever\\Desktop\\Unishit\\11st\\1670 Application Development\\Assm1670\\Demo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\fever\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -71,8 +71,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -84,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
