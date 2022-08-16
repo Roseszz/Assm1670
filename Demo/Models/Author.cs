@@ -23,5 +23,6 @@ namespace Demo.Models
         [Required]
         [Display(Name = "Author Name")]
         public int BookId { get; set; }
+        public Book Book { get; set; }
     }
 }
