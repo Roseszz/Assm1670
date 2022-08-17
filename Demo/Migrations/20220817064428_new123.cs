@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Demo.Migrations
 {
-    public partial class new1 : Migration
+    public partial class new123 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,8 +54,7 @@ namespace Demo.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 30, nullable: false),
                     Email = table.Column<string>(nullable: false),
-                    Age = table.Column<int>(nullable: false),
-                    BookId = table.Column<int>(nullable: false)
+                    Age = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,12 +67,25 @@ namespace Demo.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(maxLength: 20, nullable: false),
-                    Description = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Category", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Requests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<bool>(nullable: false),
+                    CategoryName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Requests", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -189,23 +201,22 @@ namespace Demo.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 30, nullable: false),
+                    Image = table.Column<string>(nullable: true),
                     Quantity = table.Column<int>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     TimePublish = table.Column<DateTime>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
-                    AuthorId1 = table.Column<int>(nullable: true),
                     AuthorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Book", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Book_Author_AuthorId1",
-                        column: x => x.AuthorId1,
+                        name: "FK_Book_Author_AuthorId",
+                        column: x => x.AuthorId,
                         principalTable: "Author",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Book_Category_CategoryId",
                         column: x => x.CategoryId,
@@ -238,39 +249,66 @@ namespace Demo.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Author",
-                columns: new[] { "Id", "Age", "BookId", "Email", "Name" },
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 12, 40, 0, "Long@gmail.com", "Long" },
-                    { 13, 70, 0, "Minh@gmail.com", "Minh" },
-                    { 14, 50, 0, "Khanh@gmail.com", "Khanh" },
-                    { 15, 30, 0, "Ha@gmail.com", "Ha" },
-                    { 16, 40, 0, "Hanh@gmail.com", "Hanh" }
+                    { "1", "50cd4c44-4d54-47fc-8a33-0cfe0edbb782", "Admin", "Admin" },
+                    { "2", "6a382f32-3c23-499a-b0fe-967ea7693cd8", "Customer", "Customer" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "1", 0, "e7d4dd8f-b6ed-4446-9da5-acbd1295df9a", "admin@gmail.com", false, false, null, null, "admin@gmail.com", "AQAAAAEAACcQAAAAEC/6wfJGfoCPt+S6LgxCk2Gsi8kDsDZVfxZe6FYmXFgsPfm5CU+ljaJJlP50NnqXuw==", null, false, "8c48109d-c4f3-4da9-9a53-5bacf7565ad0", false, "admin@gmail.com" },
+                    { "2", 0, "06f19198-3b41-4bf5-a4db-b67a66b3c82e", "customer@gmail.com", false, false, null, null, "customer@gmail.com", "AQAAAAEAACcQAAAAEJl+wAmXAprLzzk6ofMbZHzoNpUL6OkYVltiUn2JpRXKdn++VS95srdzbtwNIu1mhw==", null, false, "e3f05652-b75c-4b5b-a5a6-ff5b286e8208", false, "customer@gmail.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Author",
+                columns: new[] { "Id", "Age", "Email", "Name" },
+                values: new object[,]
+                {
+                    { 1, 40, "Long@gmail.com", "Long" },
+                    { 2, 70, "Minh@gmail.com", "Minh" },
+                    { 3, 50, "Khanh@gmail.com", "Khanh" },
+                    { 4, 30, "Ha@gmail.com", "Ha" },
+                    { 5, 40, "Hanh@gmail.com", "Hanh" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Category",
-                columns: new[] { "Id", "Description", "Name" },
+                columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, " Novel Type", " Novel" },
-                    { 2, " Fantasy Type", " Fantasy" },
-                    { 3, " Romance Type", " Romance" },
-                    { 4, " Horror Type", " Horror" },
-                    { 5, " Comedy Type", " Comedy" }
+                    { 1, " Novel" },
+                    { 2, " Fantasy" },
+                    { 3, " Romance" },
+                    { 4, " Horror" },
+                    { 5, " Comedy" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[,]
+                {
+                    { "1", "1" },
+                    { "2", "2" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Book",
-                columns: new[] { "Id", "AuthorId", "AuthorId1", "CategoryId", "Description", "Name", "Price", "Quantity", "TimePublish" },
+                columns: new[] { "Id", "AuthorId", "CategoryId", "Image", "Name", "Price", "Quantity", "TimePublish" },
                 values: new object[,]
                 {
-                    { 1, 1, null, 1, "None", "Hamlet ", 100.0, 10, new DateTime(1996, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 2, null, 2, "None", "The Great Gatsby", 200.0, 10, new DateTime(2000, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, 3, null, 3, "None", "One Hundred Years of Solitude", 400.0, 10, new DateTime(2009, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, 4, null, 4, "None", "Don Quixote", 700.0, 10, new DateTime(2012, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 5, 5, null, 5, "None", "Moby Dick ", 200.0, 10, new DateTime(2005, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, 1, 1, null, "Hamlet ", 100.0, 10, new DateTime(1996, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 2, 2, null, "The Great Gatsby", 200.0, 10, new DateTime(2000, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 3, 3, null, "One Hundred Years of Solitude", 400.0, 10, new DateTime(2009, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 4, 4, null, "Don Quixote", 700.0, 10, new DateTime(2012, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, 5, 5, null, "Moby Dick ", 200.0, 10, new DateTime(2005, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -313,15 +351,14 @@ namespace Demo.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Book_AuthorId1",
+                name: "IX_Book_AuthorId",
                 table: "Book",
-                column: "AuthorId1");
+                column: "AuthorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Book_CategoryId",
                 table: "Book",
-                column: "CategoryId",
-                unique: true);
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_BookId",
@@ -348,6 +385,9 @@ namespace Demo.Migrations
 
             migrationBuilder.DropTable(
                 name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "Requests");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

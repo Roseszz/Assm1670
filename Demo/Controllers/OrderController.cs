@@ -1,7 +1,9 @@
 ﻿using Demo.Data;
 using Demo.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Data;
 
 namespace Demo.Controllers
 {
@@ -14,6 +16,7 @@ namespace Demo.Controllers
             context = applicationDbContext;
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         public IActionResult Make(int id, int quantity)
         {
@@ -31,13 +34,42 @@ namespace Demo.Controllers
             context.Order.Add(order);
             //trừ quantity của mobile
             mobile.Quantity -= quantity;
-            context.Mobile.Update(mobile);
+            context.Book.Update(mobile);
             //lưu cập nhật vào DB
             context.SaveChanges();
             //gửi về thông báo order thành công
-            TempData["Success"] = "Order mobile successfully !";
+            TempData["Success"] = "Order Book successfully !";
             //redirect về trang mobile store
-            return RedirectToAction("Store", "Mobile");
+            return RedirectToAction("Store", "Book");
         }
+        /*
+        [Authorize(Roles = "Customer,Admin")]
+        public IActionResult Delete(int id)
+        {
+            var order = context.Order.Find(id);
+            context.Order.Remove(order);
+            context.SaveChanges();
+            return RedirectToAction("Index", "Order");
+        }
+
+        [Authorize(Roles = "Admin")]
+        public IActionResult Index()
+        {
+            var orders = context.Order
+                .Include(c => c.Book)
+                .ToList();
+            return View(orders);
+        }
+        // renders orders of the current user
+        [Authorize(Roles = "Customer")]
+        public IActionResult IndexForCurrent()
+        {
+            var orders = context.Order
+                .Include(c => c.Book)
+                .Where(c => c.UserEmail == User.Identity.Name)
+                .ToList();
+            return View(orders);
+        }
+        */
     }
 }

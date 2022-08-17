@@ -19,10 +19,6 @@ namespace Demo.Models
 
         [Required]
         public int Age { get; set; }
-
-        [Required]
-        [Display(Name = "Author Name")]
-        public int BookId { get; set; }
-        public Book Book { get; set; }
+        public ICollection<Book> Book { get; set; }
     }
 }

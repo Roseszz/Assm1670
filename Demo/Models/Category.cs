@@ -8,16 +8,9 @@ namespace Demo.Models
     {
         public int Id { get; set; }
         [Required]
-        [MinLength(1 , ErrorMessage ="Category must ave atleast 5 chaaracter")]
-        [MaxLength(20)]
+        [MinLength(5 , ErrorMessage = "Category must ave atleast 5 chaaracter")]
+        [MaxLength(20, ErrorMessage = "Category must cuck no more than 20 chaaracter")]
         public string Name { get; set; }
-
-        public string Description { get; set; }
-
-        // category-book many to one
-
-        public Book Book { get; set; }
-
-
+        public ICollection<Book> Books { get; set; }
     }
 }

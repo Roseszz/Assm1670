@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Demo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220816112157_new1")]
-    partial class new1
+    [Migration("20220817064428_new123")]
+    partial class new123
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,9 +31,6 @@ namespace Demo.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -50,41 +47,36 @@ namespace Demo.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 12,
+                            Id = 1,
                             Age = 40,
-                            BookId = 0,
                             Email = "Long@gmail.com",
                             Name = "Long"
                         },
                         new
                         {
-                            Id = 13,
+                            Id = 2,
                             Age = 70,
-                            BookId = 0,
                             Email = "Minh@gmail.com",
                             Name = "Minh"
                         },
                         new
                         {
-                            Id = 14,
+                            Id = 3,
                             Age = 50,
-                            BookId = 0,
                             Email = "Khanh@gmail.com",
                             Name = "Khanh"
                         },
                         new
                         {
-                            Id = 15,
+                            Id = 4,
                             Age = 30,
-                            BookId = 0,
                             Email = "Ha@gmail.com",
                             Name = "Ha"
                         },
                         new
                         {
-                            Id = 16,
+                            Id = 5,
                             Age = 40,
-                            BookId = 0,
                             Email = "Hanh@gmail.com",
                             Name = "Hanh"
                         });
@@ -100,13 +92,10 @@ namespace Demo.Migrations
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AuthorId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -125,10 +114,9 @@ namespace Demo.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthorId1");
+                    b.HasIndex("AuthorId");
 
-                    b.HasIndex("CategoryId")
-                        .IsUnique();
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Book");
 
@@ -138,7 +126,6 @@ namespace Demo.Migrations
                             Id = 1,
                             AuthorId = 1,
                             CategoryId = 1,
-                            Description = "None",
                             Name = "Hamlet ",
                             Price = 100.0,
                             Quantity = 10,
@@ -149,7 +136,6 @@ namespace Demo.Migrations
                             Id = 2,
                             AuthorId = 2,
                             CategoryId = 2,
-                            Description = "None",
                             Name = "The Great Gatsby",
                             Price = 200.0,
                             Quantity = 10,
@@ -160,7 +146,6 @@ namespace Demo.Migrations
                             Id = 3,
                             AuthorId = 3,
                             CategoryId = 3,
-                            Description = "None",
                             Name = "One Hundred Years of Solitude",
                             Price = 400.0,
                             Quantity = 10,
@@ -171,7 +156,6 @@ namespace Demo.Migrations
                             Id = 4,
                             AuthorId = 4,
                             CategoryId = 4,
-                            Description = "None",
                             Name = "Don Quixote",
                             Price = 700.0,
                             Quantity = 10,
@@ -182,7 +166,6 @@ namespace Demo.Migrations
                             Id = 5,
                             AuthorId = 5,
                             CategoryId = 5,
-                            Description = "None",
                             Name = "Moby Dick ",
                             Price = 200.0,
                             Quantity = 10,
@@ -197,9 +180,6 @@ namespace Demo.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(20)")
@@ -213,31 +193,26 @@ namespace Demo.Migrations
                         new
                         {
                             Id = 1,
-                            Description = " Novel Type",
                             Name = " Novel"
                         },
                         new
                         {
                             Id = 2,
-                            Description = " Fantasy Type",
                             Name = " Fantasy"
                         },
                         new
                         {
                             Id = 3,
-                            Description = " Romance Type",
                             Name = " Romance"
                         },
                         new
                         {
                             Id = 4,
-                            Description = " Horror Type",
                             Name = " Horror"
                         },
                         new
                         {
                             Id = 5,
-                            Description = " Comedy Type",
                             Name = " Comedy"
                         });
                 });
@@ -271,6 +246,24 @@ namespace Demo.Migrations
                     b.ToTable("Order");
                 });
 
+            modelBuilder.Entity("Demo.Models.Request", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Requests");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -296,6 +289,22 @@ namespace Demo.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            ConcurrencyStamp = "50cd4c44-4d54-47fc-8a33-0cfe0edbb782",
+                            Name = "Admin",
+                            NormalizedName = "Admin"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            ConcurrencyStamp = "6a382f32-3c23-499a-b0fe-967ea7693cd8",
+                            Name = "Customer",
+                            NormalizedName = "Customer"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -385,6 +394,38 @@ namespace Demo.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e7d4dd8f-b6ed-4446-9da5-acbd1295df9a",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "admin@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC/6wfJGfoCPt+S6LgxCk2Gsi8kDsDZVfxZe6FYmXFgsPfm5CU+ljaJJlP50NnqXuw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "8c48109d-c4f3-4da9-9a53-5bacf7565ad0",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "06f19198-3b41-4bf5-a4db-b67a66b3c82e",
+                            Email = "customer@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "customer@gmail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJl+wAmXAprLzzk6ofMbZHzoNpUL6OkYVltiUn2JpRXKdn++VS95srdzbtwNIu1mhw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e3f05652-b75c-4b5b-a5a6-ff5b286e8208",
+                            TwoFactorEnabled = false,
+                            UserName = "customer@gmail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -448,6 +489,18 @@ namespace Demo.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "1",
+                            RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "2",
+                            RoleId = "2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -474,12 +527,14 @@ namespace Demo.Migrations
             modelBuilder.Entity("Demo.Models.Book", b =>
                 {
                     b.HasOne("Demo.Models.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId1");
+                        .WithMany("Book")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Demo.Models.Category", "Category")
-                        .WithOne("Book")
-                        .HasForeignKey("Demo.Models.Book", "CategoryId")
+                        .WithMany("Books")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -487,7 +542,7 @@ namespace Demo.Migrations
             modelBuilder.Entity("Demo.Models.Order", b =>
                 {
                     b.HasOne("Demo.Models.Book", "Book")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
