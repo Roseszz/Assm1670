@@ -2,8 +2,10 @@
 using Demo.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data;
+using System.Linq;
 
 namespace Demo.Controllers
 {
@@ -42,7 +44,7 @@ namespace Demo.Controllers
             //redirect về trang mobile store
             return RedirectToAction("Store", "Book");
         }
-        /*
+        
         [Authorize(Roles = "Customer,Admin")]
         public IActionResult Delete(int id)
         {
@@ -70,6 +72,6 @@ namespace Demo.Controllers
                 .ToList();
             return View(orders);
         }
-        */
+        
     }
 }

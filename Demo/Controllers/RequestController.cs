@@ -1,9 +1,7 @@
 ﻿using Demo.Data;
 using Demo.Models;
-using Demo.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using System.Linq;
 
 namespace Assignment.Controllers

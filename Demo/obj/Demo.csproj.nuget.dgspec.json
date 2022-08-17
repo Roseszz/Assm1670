@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fever\\Desktop\\Unishit\\11st\\1670 Application Development\\Assm1670\\Demo\\Demo.csproj": {}
+    "C:\\Users\\Admin\\source\\repos\\New folder (2)\\Demo\\Demo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fever\\Desktop\\Unishit\\11st\\1670 Application Development\\Assm1670\\Demo\\Demo.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\New folder (2)\\Demo\\Demo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fever\\Desktop\\Unishit\\11st\\1670 Application Development\\Assm1670\\Demo\\Demo.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\New folder (2)\\Demo\\Demo.csproj",
         "projectName": "Demo",
-        "projectPath": "C:\\Users\\fever\\Desktop\\Unishit\\11st\\1670 Application Development\\Assm1670\\Demo\\Demo.csproj",
-        "packagesPath": "C:\\Users\\fever\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fever\\Desktop\\Unishit\\11st\\1670 Application Development\\Assm1670\\Demo\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\New folder (2)\\Demo\\Demo.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\New folder (2)\\Demo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fever\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -63,6 +63,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[3.1.27, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
             }
           },
           "imports": [
@@ -71,7 +75,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -83,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

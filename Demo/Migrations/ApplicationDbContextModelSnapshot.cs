@@ -292,14 +292,14 @@ namespace Demo.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "50cd4c44-4d54-47fc-8a33-0cfe0edbb782",
+                            ConcurrencyStamp = "5f28af1b-e3f2-4251-9616-9f4e6dcd72a3",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "6a382f32-3c23-499a-b0fe-967ea7693cd8",
+                            ConcurrencyStamp = "96c951f8-cca6-4cf7-a8d3-2f3218555976",
                             Name = "Customer",
                             NormalizedName = "Customer"
                         });
@@ -398,14 +398,14 @@ namespace Demo.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e7d4dd8f-b6ed-4446-9da5-acbd1295df9a",
+                            ConcurrencyStamp = "8a2bb936-96ec-4d58-8e48-f87fd3655ee5",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "admin@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEC/6wfJGfoCPt+S6LgxCk2Gsi8kDsDZVfxZe6FYmXFgsPfm5CU+ljaJJlP50NnqXuw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP2UkImCMA1Z9hkQIc4VZ5Q423aBaHeMtGzwxejxENUbn5pxv6KtFg8Ee/892wlWRQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8c48109d-c4f3-4da9-9a53-5bacf7565ad0",
+                            SecurityStamp = "578b740c-d345-4c55-93e1-d253bbd4f161",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         },
@@ -413,14 +413,14 @@ namespace Demo.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "06f19198-3b41-4bf5-a4db-b67a66b3c82e",
+                            ConcurrencyStamp = "acc1879f-daea-4923-9e86-9cf54a6df5c8",
                             Email = "customer@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "customer@gmail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJl+wAmXAprLzzk6ofMbZHzoNpUL6OkYVltiUn2JpRXKdn++VS95srdzbtwNIu1mhw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP41adUUKOylJgv0qOvDH0nALwWwTWMmn7qtA3VtG2Lzlz1FzhgXJAd4/VSZiyn+nw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e3f05652-b75c-4b5b-a5a6-ff5b286e8208",
+                            SecurityStamp = "285f4d1d-62cf-49e8-8412-7a4275e1177b",
                             TwoFactorEnabled = false,
                             UserName = "customer@gmail.com"
                         });

@@ -137,7 +137,7 @@ namespace Demo.Controllers
             return View("Store", books);
         }
         */
-        public IActionResult Store()
+        public IActionResult Shop()
         {
             return View(context.Book.ToList());
         }
