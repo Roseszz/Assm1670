@@ -42,7 +42,7 @@ namespace Demo.Controllers
             //gửi về thông báo order thành công
             TempData["Success"] = "Order Book successfully !";
             //redirect về trang mobile store
-            return RedirectToAction("Store", "Book");
+            return RedirectToAction("Shop", "Book");
         }
         
         [Authorize(Roles = "Customer,Admin")]

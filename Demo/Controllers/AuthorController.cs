@@ -37,14 +37,14 @@ namespace Demo.Controllers
             TempData["Message"] = "Delete author successfully !";
             return RedirectToAction(nameof(Index));
         }
-        [Authorize(Roles = "StoreOwner")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize(Roles = "StoreOwner")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(Author author)
         {

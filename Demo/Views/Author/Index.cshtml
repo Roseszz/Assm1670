@@ -6,7 +6,7 @@
         <p class="alert alert-danger">@TempData["message"]</p>
     }
     <table class="table table-bordered">
-        @if (User.Identity.IsAuthenticated && User.IsInRole("StoreOwner"))
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
         {
             <tr>
                 <th colspan="2">Author List</th>

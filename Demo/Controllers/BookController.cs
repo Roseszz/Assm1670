@@ -121,20 +121,20 @@ namespace Demo.Controllers
         public IActionResult PriceAsc()
         {
             var books = context.Book.OrderBy(m => m.Price).ToList();
-            return View("Store", books);
+            return View("Shop", books);
         }
 
         public IActionResult PriceDesc()
         {
             var books = context.Book.OrderByDescending(m => m.Price).ToList();
-            return View("Store", books);
+            return View("Shop", books);
         }
 
         [HttpPost]
         public IActionResult Search(string keyword)
         {
             var books = context.Book.Where(m => m.Name.Contains(keyword)).ToList();
-            return View("Store", books);
+            return View("Shop", books);
         }
         */
         public IActionResult Shop()

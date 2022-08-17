@@ -22,7 +22,7 @@ namespace Assignment.Controllers
         }
 
 
-        [Authorize(Roles = "StoreOwner")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult MakeRequest()
         {
@@ -30,7 +30,7 @@ namespace Assignment.Controllers
             return View();
         }
 
-        [Authorize(Roles = "StoreOwner")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult MakeRequest(Request request)
         {

@@ -1,4 +1,4 @@
-﻿@model ICollection<Author>
+﻿@model Demo.Models.Author
 
 <div class="container col-md-6 text-center mt-5">
     @if (@TempData["message"] != null)
@@ -6,7 +6,7 @@
         <p class="alert alert-danger">@TempData["message"]</p>
     }
     <table class="table table-bordered">
-        @if (User.Identity.IsAuthenticated && User.IsInRole("StoreOwner"))
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
         {
             <tr>
                 <th colspan="2">Author List</th>
@@ -21,7 +21,7 @@
                 <th>Actions</th>
 
             </tr>
-            @foreach (var author in Model)
+            @foreach (var author in Model.Book)
             {
                 <tr>
                     <td>@author.Id</td>
@@ -31,8 +31,8 @@
                             @author.Name
                         </a>
                     </td>
-                    <td>@author.Email</td>
-                    <td>@author.Age</td>
+                    <td>@author.Name</td>
+                    <td>@author.Price</td>
 
                     <td>
                         <a asp-controller="Author" asp-action="Edit" class="btn btn-warning" asp-route-id="@author.Id">Edit</a>
@@ -54,7 +54,7 @@
                 <th>Email</th>
                 <th>Age</th>
             </tr>
-            @foreach (var author in Model)
+            @foreach (var author in Model.Book)
             {
                 <tr>
                     <td>@author.Id</td>
@@ -63,8 +63,8 @@
                             @author.Name
                         </a>
                     </td>
-                    <td>@author.Email</td>
-                    <td>@author.Age</td>
+                    <td>@author.Name</td>
+                    <td>@author.Price</td>
                 </tr>
             }
         }
