@@ -1,7 +1,7 @@
 ﻿@model ICollection<Book>
 
 <div class="container text-center mt-3">
-    <h3 class="text text-primary mt-2 mb-2">Book Store</h3>
+    <h1 class="mx-auto my-0 text-uppercase">Book Shop</h1>
 
     @if (TempData["Success"] != null)
     {
@@ -11,14 +11,14 @@
         <div class="row">
             @foreach (var Book in Model)
             {
-                <div class="col-md-3 p-3">
+                <div class="col-md-3 p-3 bg-secondary">
                     <div class="card">
                         <div class="card-body">
                             <a class="font-weight-bold" asp-controller="book" asp-action="Detail" asp-route-id="@Book.Id">
                             <img class="card-img-top" src="@Book.Image" width="180" height="200">
                             </a>
-                            <h4 class="text text-primary mt-3">@Book.Name</h4>
-                            <h5 class="text text-success">@Book.Price $</h5>
+                            <h4 class="text text-black-50 text-primary mt-3">@Book.Name</h4>
+                            <h5 class="text text-justify text-center">@Book.Price $</h5>
                         </div>
                         @if (Book.Quantity == 0)
                         {
@@ -36,7 +36,7 @@
                                     <input type="hidden" name="id" value="@Book.Id" />
                                     <input class="form-control" type="number" name="quantity" required min="1" max="@Book.Quantity">
                                     <div class="form-group mt-3">
-                                        <input type="submit" class="btn btn-success" value="Make order"
+                                        <input type="submit" class="bg-secondary btn btn-dark" value="Make order"
                                        onclick="    return confirm('Are you sure to order this Book ?');" />
                                     </div>
                                 </form>

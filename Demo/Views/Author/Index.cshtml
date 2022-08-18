@@ -9,8 +9,12 @@
         @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin")||User.IsInRole("Staff")))
         {
             <tr>
-                <th colspan="4">Author List</th>
-                <th><a asp-controller="Author" asp-action="Create">Create new author</a></th>
+                <th colspan="4" class="h2 bg-light text-danger">Author List</th>
+                <th class="col-md-4">
+                <a class="btn btn-black" asp-controller="Author" asp-action="Create">
+                    New Author
+                </a>
+            </th>
 
             </tr>
             <tr>
