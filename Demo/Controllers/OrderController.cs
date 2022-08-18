@@ -53,18 +53,9 @@ namespace Demo.Controllers
             context.SaveChanges();
             return RedirectToAction("Index", "Order");
         }
-
-        [Authorize(Roles = "Admin, Customer")]
-        public IActionResult Index()
-        {
-            var orders = context.Order
-                .Include(c => c.Book)
-                .ToList();
-            return View(orders);
-        }
         // renders orders of the current user
         [Authorize(Roles = "Customer")]
-        public IActionResult IndexForCurrent()
+        public IActionResult IndexForUser()
         {
             var orders = context.Order
                 .Include(c => c.Book)
