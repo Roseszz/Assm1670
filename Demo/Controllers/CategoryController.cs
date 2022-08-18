@@ -47,26 +47,19 @@ namespace Demo.Controllers
 
         //thêm dữ liệu vào bảng
         //hàm 1: render ra view
-        [Authorize(Roles = "Admin")]
-        [HttpGet]
-        public IActionResult Create()
-        {
-            //đẩy danh sách của country sang bảng Add Brand
-            //ViewBag.Countries = context.Author.ToList();
-            return View();
-        }
+
 
         //hàm 2: nhận và xử lý dữ liệu được gửi từ form
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult Create(string n)
+        public IActionResult Create()
         {
             //check tính hợp lệ của dữ liệu 
-            var category = new Category();
+            Category category = new Category();
             if (ModelState.IsValid)
             {
                 //add dữ liệu vào DB
-                category.Name = n;
+                category.Name = (string)TempData["Category"];
                 context.Add(category);
                 context.SaveChanges();
                 //hiển thị thông báo thành công về view
@@ -75,11 +68,11 @@ namespace Demo.Controllers
                 return RedirectToAction(nameof(Index));
             }
             //nếu dữ liệu không hợp lệ thì trả về form để nhập lại
-            return View(category);
+            return View(nameof(Index));
         }
 
-        //sửa dữ liệu của bảng
-        [Authorize(Roles = "Admin")]
+    //sửa dữ liệu của bảng
+    [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Edit(int id)
         {

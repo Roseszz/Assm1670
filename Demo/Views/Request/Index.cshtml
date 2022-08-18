@@ -22,9 +22,9 @@
 
                 <td>@request.CategoryName</td>
                 <td>
-                    <form asp-controller="Category" asp-action="Create" method="post">
+                    <form asp-controller="Request" asp-action="Approved" asp-route-id="@request.Id" method="post">
                         <input type="hidden" name="name" class="form-control" />
-                        <input class="btn btn-success" type="submit" value="Accept" />
+                        <input class="btn btn-success" type="submit" value="Accept"/>
                     </form>
 
                     <a class="btn btn-danger" asp-controller="Request" asp-action="Delete" asp-route-id="@request.Id"

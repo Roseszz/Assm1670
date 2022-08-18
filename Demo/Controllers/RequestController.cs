@@ -54,6 +54,18 @@ namespace Assignment.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult Approved(int id)
+        {
+            var request = context.Requests.Find(id);
+            request.Status = true;
+            context.Requests.Update(request);
+            Category category = new Category();
+            //category.Id = id;
+            category.Name = request.CategoryName;
+            context.Category.Add(category);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         //display all requests
         [Authorize(Roles = "Admin")]
