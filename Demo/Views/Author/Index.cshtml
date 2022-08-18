@@ -6,10 +6,10 @@
         <p class="alert alert-danger">@TempData["message"]</p>
     }
     <table class="table table-bordered">
-        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin")||User.IsInRole("Staff")))
         {
             <tr>
-                <th colspan="2">Author List</th>
+                <th colspan="4">Author List</th>
                 <th><a asp-controller="Author" asp-action="Create">Create new author</a></th>
 
             </tr>

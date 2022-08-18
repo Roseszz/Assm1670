@@ -28,7 +28,7 @@ namespace Demo.Controllers
              */
             return View(author);
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         public IActionResult Delete(int id)
         {
             var author = context.Author.Find(id);
@@ -37,14 +37,14 @@ namespace Demo.Controllers
             TempData["Message"] = "Delete author successfully !";
             return RedirectToAction(nameof(Index));
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         [HttpPost]
         public IActionResult Create(Author author)
         {
@@ -58,7 +58,7 @@ namespace Demo.Controllers
             return View(author);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -66,7 +66,7 @@ namespace Demo.Controllers
             return View(author);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         [HttpPost]
         public IActionResult Edit(Author author)
         {

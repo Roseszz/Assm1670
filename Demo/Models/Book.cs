@@ -7,7 +7,7 @@ namespace Demo.Models
 {
     public class Book
     {
-         public int Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MinLength(5, ErrorMessage = "Book  name must be at least 5 characters")]

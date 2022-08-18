@@ -54,7 +54,7 @@ namespace Demo.Controllers
             return RedirectToAction("Index", "Order");
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Customer")]
         public IActionResult Index()
         {
             var orders = context.Order

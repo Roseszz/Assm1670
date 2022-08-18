@@ -25,7 +25,7 @@ namespace Demo.Controllers
         }
 
         //xoá dữ liệu từ bảng
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         public IActionResult Delete(int id)
         {
             var category = context.Category.Find(id);
@@ -57,6 +57,7 @@ namespace Demo.Controllers
         }
 
         //hàm 2: nhận và xử lý dữ liệu được gửi từ form
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(string n)
         {

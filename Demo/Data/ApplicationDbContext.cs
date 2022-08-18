@@ -46,6 +46,11 @@ namespace Demo.Data
                 {
                     UserId = "2",
                     RoleId = "2"
+                },
+                new IdentityUserRole<string>
+                {
+                    UserId = "3",
+                    RoleId = "3"
                 }
             );
         }
@@ -64,13 +69,19 @@ namespace Demo.Data
                     Id = "2",
                     Name = "Customer",
                     NormalizedName = "Customer"
+                },
+                new IdentityRole
+                {
+                    Id = "3",
+                    Name = "Staff",
+                    NormalizedName = "Staff"
                 }
             );
         }
 
         private void SeedUser(ModelBuilder builder)
         {
-            //tạo tài khoản test cho admin & customer
+            //tạo tài khoản test cho Staff & customer
             var admin = new IdentityUser
             {
                 Id = "1",
@@ -85,26 +96,34 @@ namespace Demo.Data
                 UserName = "customer@gmail.com",
                 NormalizedUserName = "customer@gmail.com"
             };
+            var Staff = new IdentityUser
+            {
+                Id = "3",
+                Email = "Staff@gmail.com",
+                UserName = "Staff@gmail.com",
+                NormalizedUserName = "Staff@gmail.com"
+            };
 
             //khai báo thư viện để mã hóa mật khẩu cho user
             var hasher = new PasswordHasher<IdentityUser>();
 
             //set mật khẩu đã mã hóa cho từng user
-            admin.PasswordHash = hasher.HashPassword(admin, "123456");
-            customer.PasswordHash = hasher.HashPassword(customer, "123456");
+            admin.PasswordHash = hasher.HashPassword(admin, "6Z*U^E_y+_}0mgo");
+            customer.PasswordHash = hasher.HashPassword(customer, "6Z*U^E_y+_}0mgo");
+            Staff.PasswordHash = hasher.HashPassword(Staff, "6Z*U^E_y+_}0mgo");
 
             //add 2 tài khoản test vào bảng User
-            builder.Entity<IdentityUser>().HasData(admin, customer);
+            builder.Entity<IdentityUser>().HasData(Staff, customer);
         }
 
         private void SeedBook(ModelBuilder builder)
         {
             builder.Entity<Book>().HasData(
-                new Book { Id = 1, Name = "Hamlet ", Quantity = 10, Price = 100.0, TimePublish = DateTime.Parse("12/09/1996"), AuthorId = 1, CategoryId = 1 },
-                new Book { Id = 2, Name = "The Great Gatsby", Quantity = 10, Price = 200.0, TimePublish = DateTime.Parse("12/06/2000"), AuthorId = 2, CategoryId = 2 },
-                new Book { Id = 3, Name = "One Hundred Years of Solitude", Quantity = 10, Price = 400.0, TimePublish = DateTime.Parse("12/07/2009"), AuthorId = 3, CategoryId = 3 },
-                new Book { Id = 4, Name = "Don Quixote", Quantity = 10, Price = 700.0, TimePublish = DateTime.Parse("12/03/2012"), AuthorId = 4, CategoryId = 4 },
-                new Book { Id = 5, Name = "Moby Dick ", Quantity = 10, Price = 200.0, TimePublish = DateTime.Parse("12/01/2005"), AuthorId = 5, CategoryId = 5 }
+                new Book { Id = 1, Name = "Hamlet ", Quantity = 10, Price = 100.0, TimePublish = DateTime.Parse("12/09/1996"), AuthorId = 1, CategoryId = 1, Image = "https://edit.org/images/cat/book-covers-big-2019101610.jpg" },
+                new Book { Id = 2, Name = "The Great Gatsby", Quantity = 10, Price = 200.0, TimePublish = DateTime.Parse("12/06/2000"), AuthorId = 2, CategoryId = 2, Image = "https://img.freepik.com/free-psd/book-cover-mockup_125540-572.jpg?w=2000" },
+                new Book { Id = 3, Name = "One Hundred Years of Solitude", Quantity = 10, Price = 400.0, TimePublish = DateTime.Parse("12/07/2009"), AuthorId = 3, CategoryId = 3, Image = "https://img.freepik.com/free-psd/book-cover-mockup_125540-572.jpg?w=2000" },
+                new Book { Id = 4, Name = "Don Quixote", Quantity = 10, Price = 700.0, TimePublish = DateTime.Parse("12/03/2012"), AuthorId = 4, CategoryId = 4, Image = "https://edit.org/images/cat/book-covers-big-2019101610.jpg" },
+                new Book { Id = 5, Name = "Moby Dick ", Quantity = 10, Price = 200.0, TimePublish = DateTime.Parse("12/01/2005"), AuthorId = 5, CategoryId = 5, Image = "https://img.freepik.com/free-psd/book-cover-mockup_125540-572.jpg?w=2000" }
                 );
         }
         private void SeedCategory(ModelBuilder builder)
@@ -127,10 +146,5 @@ namespace Demo.Data
                 new Author { Id = 5, Name = "Hanh", Email = "Hanh@gmail.com", Age = 40 }
                 );
         }
-
-
-
-
-
     }
 }

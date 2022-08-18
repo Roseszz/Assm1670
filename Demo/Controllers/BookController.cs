@@ -39,7 +39,7 @@ namespace Demo.Controllers
 
 
         //xoá dữ liệu từ bảng
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         public IActionResult Delete(int id)
         {
             var book = context.Book.Find(id);
@@ -59,7 +59,7 @@ namespace Demo.Controllers
             return View(book);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -70,7 +70,7 @@ namespace Demo.Controllers
         }
 
         //hàm 2: nhận và xử lý dữ liệu được gửi từ form
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         [HttpPost]
         public IActionResult Create(Book book)
         {
@@ -91,7 +91,7 @@ namespace Demo.Controllers
 
 
         //sửa dữ liệu của bảng
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -99,7 +99,7 @@ namespace Demo.Controllers
             ViewBag.Brands = context.Category.ToList();
             return View(context.Book.Find(id));
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Staff")]
         [HttpPost]
         public IActionResult Edit(Book book)
         {
