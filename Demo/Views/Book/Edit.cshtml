@@ -24,16 +24,16 @@
             <span asp-validation-for="Image" class="text text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="AuthorId" class="text text-success"></label>
-            <select asp-for="AuthorId" class="form-control" asp-items="@(new SelectList(ViewBag.Authors,"Id","Name"))">
-                <option>Select one</option>
-            </select>
-        </div>
+        <label asp-for="AuthorId" class="text text-success"></label>
+        <select asp-for="AuthorId" class="form-control" asp-items="@(new SelectList(ViewBag.Authors,"Id","Name"))">
+            <option>Select one</option>
+         </select>
+         </div>
         <div class="form-group">
-            <label asp-for="CategoryId" class="text text-success"></label>
-            <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))">
-                <option>Select one</option>
-            </select>
+        <label asp-for="CategoryId" class="text text-success"></label>
+        <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))">
+            <option>Select one</option>
+         </select>
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Edit" />

@@ -18,7 +18,7 @@ namespace Demo.Controllers
             context = applicationDbContext;
         }
 
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "Customer,Staff")]
         [HttpPost]
         public IActionResult Make(int id, int quantity)
         {
@@ -45,16 +45,16 @@ namespace Demo.Controllers
             return RedirectToAction("Shop", "Book");
         }
         
-        [Authorize(Roles = "Customer,Admin")]
+        [Authorize(Roles = "Customer,Admin,Staff")]
         public IActionResult Delete(int id)
         {
             var order = context.Order.Find(id);
             context.Order.Remove(order);
             context.SaveChanges();
-            return RedirectToAction("Index", "Order");
+            return RedirectToAction("IndexForUser", "Order");
         }
         // renders orders of the current user
-        [Authorize(Roles = "Customer")]
+        [Authorize(Roles = "Customer,Staff")]
         public IActionResult IndexForUser()
         {
             var orders = context.Order
@@ -63,6 +63,5 @@ namespace Demo.Controllers
                 .ToList();
             return View(orders);
         }
-        
     }
 }

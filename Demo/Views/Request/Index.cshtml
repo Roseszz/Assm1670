@@ -6,12 +6,18 @@
     <table class="table table-bordered">
         <tr>
             <th colspan="3" class="h3 bg-light text-success">Request List</th>
-
+            <th>
+                <form asp-controller="Request" asp-action="Search">
+                    <input type="search" placeholder="Search.."/>
+                </form>
+            </th>
         </tr>
         <tr>
             <th>Request Id</th>
 
             <th>Category name</th>
+
+            <th>Category Status</th>
 
             <th>Action</th>
         </tr>
@@ -21,6 +27,18 @@
                 <td>@request.Id</td>
 
                 <td>@request.CategoryName</td>
+                @if(@request.Status == true)
+                {
+                    <th>
+                        <a class="text-success">Approved</a>
+                    </th>
+                }
+                else
+                {
+                    <th>
+                        <a class="text-danger">Disapproved</a>
+                    </th>
+                }
                 <td>
                     <form asp-controller="Request" asp-action="Approved" asp-route-id="@request.Id" method="post">
                         <input type="hidden" name="name" class="form-control" />

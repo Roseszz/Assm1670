@@ -8,6 +8,9 @@
         <p class="alert alert-danger">@TempData["success"]</p>
     }
     <div class="card-group">
+    <form asp-controller="Book" asp-action="Search" method="post">
+        <input type="search" placeholder="Search.." name="keyword"/>
+    </form>
         <div class="row">
             @foreach (var Book in Model)
             {

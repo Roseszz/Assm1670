@@ -28,13 +28,13 @@ namespace Demo.Controllers
             var books = context.Book.OrderByDescending(m => m.Id).ToList();
             return View(books);
         }
-        */
+        */  
         public IActionResult Index()
         {
             return View(context.Book.ToList());
         }
-
-        [Authorize(Roles = "Customer")]
+        
+        //[Authorize(Roles = "Customer")]
         //hiển thị giao diện dạng card cho khách hàng order sản phẩm
 
 
@@ -65,7 +65,7 @@ namespace Demo.Controllers
         {
             //đẩy danh sách của country sang bảng Add book
             ViewBag.Authors = context.Author.ToList();
-            ViewBag.Brands = context.Category.ToList();
+            ViewBag.Categories = context.Category.ToList();
             return View();
         }
 
@@ -96,7 +96,7 @@ namespace Demo.Controllers
         public IActionResult Edit(int id)
         {
             ViewBag.Authors = context.Author.ToList();
-            ViewBag.Brands = context.Category.ToList();
+            ViewBag.Categories = context.Category.ToList();
             return View(context.Book.Find(id));
         }
         [Authorize(Roles = "Admin, Staff")]
@@ -129,14 +129,14 @@ namespace Demo.Controllers
             var books = context.Book.OrderByDescending(m => m.Price).ToList();
             return View("Shop", books);
         }
-
+        */
         [HttpPost]
         public IActionResult Search(string keyword)
         {
             var books = context.Book.Where(m => m.Name.Contains(keyword)).ToList();
             return View("Shop", books);
         }
-        */
+        
         public IActionResult Shop()
         {
             return View(context.Book.ToList());

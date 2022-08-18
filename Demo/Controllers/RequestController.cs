@@ -39,7 +39,7 @@ namespace Assignment.Controllers
                 request.Status = false;
                 context.Add(request);
                 context.SaveChanges();
-
+                TempData["Message"] = "Create Request successfully !";
                 return RedirectToAction(nameof(MakeRequest));
             }
             return View(request);
@@ -64,7 +64,8 @@ namespace Assignment.Controllers
             category.Name = request.CategoryName;
             context.Category.Add(category);
             context.SaveChanges();
-            return RedirectToAction("Index");
+            TempData["Message"] = "Create Request successfully !";
+            return RedirectToAction(nameof(Index));
         }
 
         //display all requests
@@ -73,5 +74,6 @@ namespace Assignment.Controllers
         {
             return View(context.Requests.ToList());
         }
+
     }
 }
